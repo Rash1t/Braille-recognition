@@ -33,7 +33,10 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return render_template('data.html', filename=filename)
+        path = "./data/" + filename[:-4] + "_jpg.txt"
+        with open(path, encoding='utf-8') as f:
+            file_content = f.read()
+        return render_template('data.html', filename=filename, text=file_content)
     return render_template('index.html')
 
 
@@ -43,4 +46,4 @@ def data():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
