@@ -17,6 +17,14 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+
+#Блок для распознавания
+def Recognition(image_path):
+    text = ""
+    #Всякую ерунду вставлять сюда
+    return text
+
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -33,10 +41,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        path = "./data/" + filename[:-4] + "_jpg.txt"
-        with open(path, encoding='utf-8') as f:
-            file_content = f.read()
-        return render_template('data.html', filename=filename, text=file_content)
+        return render_template('data.html', filename=filename, text=Recognition("./static/images/" + filename))
     return render_template('index.html')
 
 
