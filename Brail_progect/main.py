@@ -65,7 +65,6 @@ def slice(img):
 #Блок для распознавания
 def Recognition(image_path):
     text = ""
-    #Всякую ерунду вставлять сюда
     im = cv2.imread(image_path)
     im = cv2.resize(im, (2000,2750), interpolation = cv2.INTER_AREA)
     im = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
